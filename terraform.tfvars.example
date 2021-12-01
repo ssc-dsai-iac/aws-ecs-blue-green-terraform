@@ -1,0 +1,19 @@
+#IPs
+cidr = "10.0.0.0/16"
+public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
+
+#Names
+prefix = "ScDG"
+prefix_lc = "scdg"
+user_defined = "DSAI-TF-Test"
+user_defined_lc = "dsaitftest"
+
+#Region
+region = "ca-central-1"
+
+#Tags
+costcenter      = "666111"
+env             = "dev"
+ssn             = "DSAI-TF-TEST"
+subowner        = "CTOB-DE-DSAI"
