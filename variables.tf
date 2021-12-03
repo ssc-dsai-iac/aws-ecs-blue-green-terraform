@@ -1,3 +1,9 @@
+variable "cdxp_ip_set" {
+  description = "A List of CDXP IPs to whitelist"
+  type        = list(string)
+  default = []
+}
+
 variable "cidr" {
   description = "The CIDR block for the VPC. Default value is a valid CIDR"
   type        = string
@@ -14,16 +20,11 @@ variable "env" {
   type        = string
 }
 
-variable "public_subnets" {
-  description = "A list of public subnets inside the VPC"
-  type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
-}
 
 variable "private_subnets" {
   description = "A list of private subnets inside the VPC"
   type        = list(string)
-  default     = ["10.0.3.0/24", "10.0.4.0/24"]
+  default     = ["10.0.1.0/24", "10.0.2.0/24"]
 }
 
 variable "prefix" {

@@ -1,18 +1,14 @@
 # ---------------------------------------------------------------------------------------------------------------------
-# AWS Elastic Container Cluster (ECS) Blue-Green Deployment
-# ---------------------------------------------------------------------------------------------------------------------
-
-# ---------------------------------------------------------------------------------------------------------------------
 # VPC
 # ---------------------------------------------------------------------------------------------------------------------
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  
+  version = "3.11.0"
+
   name = "${var.prefix}-${var.user_defined}"
   cidr = var.cidr
 
   azs             = ["${var.region}a", "${var.region}b"]
-  public_subnets  = var.public_subnets
   private_subnets = var.private_subnets
 
 	# Default security group - ingress/egress rules cleared to deny all
@@ -32,7 +28,7 @@ module "vpc" {
   # Naming convention overwrite
   vpc_tags = { Name = "${var.prefix}-${var.user_defined}-vpc"}
 
-  # VPC Flow Logs (Cloudwatch log group and IAM role will be created)
+  #VPC Flow Logs (Cloudwatch log group and IAM role will be created)
   # enable_flow_log                      = true
   # create_flow_log_cloudwatch_log_group = true
   # create_flow_log_cloudwatch_iam_role  = true
@@ -45,4 +41,19 @@ module "vpc" {
     SubOwner = var.subowner
   }
 
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Internet Gateway - Not using the IGW from the VPC module since it requires public subnets which we don't need
+# ---------------------------------------------------------------------------------------------------------------------
+resource "aws_internet_gateway" "this" {
+  vpc_id = module.vpc.vpc_id
+
+  tags = {
+    Name = "${var.prefix}-${var.user_defined}-igw"
+    Env = var.env
+    CostCenter = var.costcenter
+    SSN = var.ssn
+    SubOwner = var.subowner
+  }
 }

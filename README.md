@@ -47,3 +47,14 @@ terraform plan -out plan
 ```sh
 terraform apply
 ```
+# TODO:
+Backend:
+- Finish ECS task definiton
+- IAM Policies & Security groups
+- Logging All to CloudWatch
+- ACM - Cert
+
+Frontend:
+- S3 frontend buckets
+- Cloudfront
+- WAF
