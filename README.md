@@ -54,7 +54,4 @@ Backend:
 - Logging All to CloudWatch
 - ACM - Cert
 
-Frontend:
-- S3 frontend buckets
-- Cloudfront
-- WAF
+Document that Terraform can't build a global waf in Canada-central - have to do it manually
