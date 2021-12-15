@@ -48,10 +48,43 @@ terraform plan -out plan
 terraform apply
 ```
 # TODO:
-Backend:
-- Finish ECS task definiton
 - IAM Policies & Security groups
 - Logging All to CloudWatch
 - ACM - Cert
 
-Document that Terraform can't build a global waf in Canada-central - have to do it manually
+- Document that Terraform can't build a global waf in Canada-central - have to do it manually
+- Would have to change the DynamoDB Table according to your application
+
+# Aspirational Folder Structure Example
+```
+/
+├── environments
+│   ├── dev
+│   │   ├── frontend
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── shared.tf      -> ../../shared/shared.tf
+│   │   │   └── variables.tf
+│   │   ├── db
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── shared.tf      -> ../../shared/shared.tf
+│   │   │   └── variables.tf
+│   ├── qa
+│   │   ├── frontend
+│   │   └── db
+│   ├── st
+│   │   ├── frontend
+│   │   └── db
+│   ├── prod
+│   │   ├── frontend
+│   │   └── db
+├── modules
+│   ├── app
+│   ├── db
+│   ├── lb
+└── shared
+    └── shared.tf
+```
